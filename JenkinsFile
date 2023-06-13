@@ -1,16 +1,22 @@
+def runShellBuildStage(){
+    sh 'python -m venv .venv' 
+    sh 'source .venv/bin/activate'
+    sh 'pip install pyhamcrest'
+}
+def runtests(){
+    sh 'python -m unittest test_with_unittest.py'
+}
 pipeline {
     agent any 
     stages {
         stage('Build') { 
             steps {
-                sh 'python -m venv .venv' 
-                sh 'source .venv/bin/activate'
-                sh 'pip install pyhamcrest'
+                runShellBuildStage()
             }
         }
         stage('Test'){
             steps {
-                sh 'python -m unittest test_with_unittest.py'
+                runtests()
             }
         }
     }
