@@ -8,7 +8,7 @@ def runShellBuildStage(){
 def runtests(){
     sh """
        source .venv/bin/activate
-       python3 -m unittest test_with_unittest.py
+       python3 -m unittest
     """   
 }
 pipeline {
